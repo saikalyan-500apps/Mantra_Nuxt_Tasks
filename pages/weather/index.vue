@@ -18,7 +18,6 @@
 
   definePageMeta({
   layout: 'weather',
-  middleware : ['auth']
 })
   
   const places = ref({});

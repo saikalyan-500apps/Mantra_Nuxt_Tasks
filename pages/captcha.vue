@@ -1,12 +1,14 @@
 <!-- pages/captcha.vue -->
 
 <template>
-  <div>
-    <label for="captcha">Enter the code: {{ correctCode }}</label>
-    <input v-model="userInput" type="text" id="captcha" />
-    <button @click="checkCode">Submit</button>
-    <p>{{ message }}</p>
+   <p class=" text-3xl text-center">Security check</p><br/>
+   <p class=" text-2xl text-center">Enter the correct code</p><br/>
+  <div class="flex flex-row justify-center items-center">
+    <label for="captcha" class="mt-4">code: {{ correctCode }}</label>
+    <input v-model="userInput" type="text" id="captcha" class="w-120" />
+    <button @click="checkCode" class="mt-4 bg-blue-500 p-4 h-12">Submit</button>
   </div>
+  <p class="text-center">{{ message }}</p>
 </template>
 
 <script setup>
