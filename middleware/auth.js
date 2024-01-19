@@ -1,11 +1,11 @@
-export default defineNuxtRouteMiddleware((to, from) => {
-    // console.log(to)
-    // console.log(from)
-    console.log("Im middleware")
-    const captchaRequired = true;
-  
-    if (captchaRequired) {
-      return navigateTo('/captcha');
-    }
-  });
+import { useCaptchaStore } from '~/store';
+
+export default defineNuxtRouteMiddleware((to,from) => {
+  const  captchaStore  = useCaptchaStore();
+ console.log(captchaStore)
+  if (captchaStore.captchaVerified) {
+    return navigateTo('/captcha');
+  }
+});
+
   

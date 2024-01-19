@@ -9,7 +9,7 @@
 const { id } = useRoute().params
 
 definePageMeta ({
-    layout:'movies'
+    layout:'weather'
 })
 </script>
 

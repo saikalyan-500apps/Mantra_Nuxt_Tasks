@@ -1,5 +1,37 @@
 <template>
   <div>
+    <FormComponent
+      title="Login"
+      :formInputs="loginFormInputs"
+      submitButtonText="Login"
+      @on-submit="login"
+    />
+  </div>
+</template>
+
+<script setup>
+import { useUserStore } from '~/store';
+
+const userStore = useUserStore();
+
+const loginFormInputs = [
+  { id: 'user', label: 'Username' },
+  { id: 'pass', label: 'Password' },
+];
+
+loginFormInputs[{'id':'user'}] = userStore.username
+loginFormInputs[{'id':'pass'}] = userStore.password
+
+const login = ({ user, pass }) => {
+  console.log('Logging in...');
+  console.log('Username:', user);
+  console.log('Password:', pass);
+};
+</script>
+
+
+<!-- <template>
+  <div>
     <h2 class="text-center">Login</h2>
     <div>
       <form @submit.prevent="login" class="flex flex-col">
@@ -28,4 +60,4 @@ function login() {
   loginUsername.value = '';
   loginPassword.value = '';
 }
-</script>
+</script> -->

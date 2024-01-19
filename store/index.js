@@ -13,3 +13,15 @@ export const useUserStore = defineStore({
     },
   },
 });
+
+export const useCaptchaStore = defineStore({
+  id: 'captcha',
+  state: () => ({
+    captchaVerified: true,
+  }),
+  actions: {
+    setCaptchaVerified(value) {
+      this.captchaVerified = value;
+    },
+  },
+});

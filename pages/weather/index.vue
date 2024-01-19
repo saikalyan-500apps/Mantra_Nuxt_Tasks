@@ -8,9 +8,11 @@
         <p>Latitude: {{ places.lat }} / longitude {{ places.lon }}</p>
         <p>Temperature: {{ places_current.temp_c }}°C / {{ places_current.temp_f }}°F</p>
         <img v-if="places_current.temp_c > 20" src="https://www.freepnglogos.com/uploads/sun-png/sun-day-rays-sun-image-pixabay-35.png" alt="sun">
-        <img v-else="places_current.temp_c < 20" src="https://www.freeiconspng.com/thumbs/cloud-icon/cloud-icon-16.png" alt="cloud">
+        <img v-else-if="places_current.temp_c < 20 & places_current.temp_c > 10 " src="https://www.freeiconspng.com/thumbs/cloud-icon/cloud-icon-16.png" alt="cloud">
+        <img v-else="places_current.temp_c < 10" src="https://cdn-icons-png.flaticon.com/512/414/414866.png" alt="snow">
         <p>LocalTime: {{ places.localtime }}</p>
       </div>
+      <PluginComponent/>
   </template>
   
   <script setup>
@@ -18,6 +20,7 @@
 
   definePageMeta({
   layout: 'weather',
+  middleware : ['auth']
 })
   
   const places = ref({});
@@ -65,7 +68,8 @@
     margin-top: 20px;
   }
   .search button:hover{
-    background-color: rgb(66, 96, 197);
+    background-color: transparent;
+    border: 1px solid white;
   }
   .info{
     margin-top: 10px;

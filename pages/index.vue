@@ -1,17 +1,15 @@
 <template>
     <div>
-        <h1 class="text-3xl text-center">Nuxt Tasks</h1>
-        <ul>
-            <l1>Task 1: Creating new project using nuxt and understood about routes, folder structure etc.</l1>
-            <li>Task 2: Form validation(using store)</li>
-            <li>Task 3: Data fetch using weather api</li>
-            <li>Task 4; Added Middleware to routes.</li>
-        </ul>
+      <h1 class="text-3xl text-center">Nuxt Tasks</h1>
+      <ul>
+        <l1>Task 1: Creating a new project using Nuxt and understanding routes, folder structure, etc.</l1>
+        <li>Task 2: Form validation (using store)</li>
+        <li>Task 3: Data fetch using weather API</li>
+        <li>Task 4: Added routing middleware for weather Api.</li>
+        <li>Task 5: Added Joke plugin and plugin component for resuable purpose.</li>
+      </ul>
+       <PluginComponent/>
     </div>
-
-</template>
-
-<script setup>
-
-</script>
-
+  </template>
+  
+  

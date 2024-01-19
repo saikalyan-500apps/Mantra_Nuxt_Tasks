@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <div>
     <h2 class="text-center">Student Data</h2>
     <div class="form">
@@ -14,7 +14,7 @@
 </template>
 
 <script setup>
-import { useUserStore } from '@/store';
+import { useUserStore } from '~/store';
 
 const userStore = useUserStore();
 const username = ref('');
@@ -26,4 +26,35 @@ function FormRegister() {
   username.value = '';
   password.value = '';
 }
+</script>
+ -->
+
+
+ <template>
+  <div>
+    <FormComponent
+      title="Register"
+      :formInputs="registerFormInputs"
+      submitButtonText="Register"
+      @on-submit="register"
+    />
+  </div>
+</template>
+
+<script setup>
+import { useUserStore } from '~/store';
+
+const userStore = useUserStore();
+
+const registerFormInputs = [
+  { id: 'firstName', label: 'First Name' },
+  { id: 'password', label: 'Password' },
+];
+
+registerFormInputs[{'id':'firstName'}] = ref('')
+registerFormInputs[{'id':'password'}] = ref('')
+
+const register = ({ firstName, password }) => {
+  userStore.register({ firstName, password });
+};
 </script>

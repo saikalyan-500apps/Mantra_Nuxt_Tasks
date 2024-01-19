@@ -1,35 +1,30 @@
 <template>
-    <p class="text-center mt-2.5 mb-2.5">{{ currentPlayer }}'s turn</p> 
-    <div class="flex flex-col justify-center">
-     <div class="container h-80 w-80 bg-gray-500 flex flex-col justify-center items-center mx-auto">
-     <div class="flex flex-row">
-       <button @click="changeData(0, 0)" class="inner-box h-16 w-16 m-4 text-white bg-gray-600 text-3xl cursor-pointer">{{ grid[0][0] }}</button>
-       <button @click="changeData(0, 1)" class="inner-box h-16 w-16 m-4 text-white bg-gray-600 text-3xl cursor-pointer">{{ grid[0][1] }}</button>
-       <button @click="changeData(0, 2)" class="inner-box h-16 w-16 m-4 text-white bg-gray-600 text-3xl cursor-pointer">{{ grid[0][2] }}</button>
-     </div>
-     <div class="flex flex-row">
-       <button @click="changeData(1, 0)" class="inner-box h-16 w-16 m-4 text-white bg-gray-600 text-3xl cursor-pointer">{{ grid[1][0] }}</button>
-       <button @click="changeData(1, 1)" class="inner-box h-16 w-16 m-4 text-white bg-gray-600 text-3xl cursor-pointer">{{ grid[1][1] }}</button>
-       <button @click="changeData(1, 2)" class="inner-box h-16 w-16 m-4 text-white bg-gray-600 text-3xl cursor-pointer">{{ grid[1][2] }}</button>
-     </div>
-     <div class="flex flex-row">
-       <button @click="changeData(2, 0)" class="inner-box h-16 w-16 m-4 text-white bg-gray-600 text-3xl cursor-pointer">{{ grid[2][0] }}</button>
-       <button @click="changeData(2, 1)" class="inner-box h-16 w-16 m-4 text-white bg-gray-600 text-3xl cursor-pointer">{{ grid[2][1] }}</button>
-       <button @click="changeData(2, 2)" class="inner-box h-16 w-16 m-4 text-white bg-gray-600 text-3xl cursor-pointer">{{ grid[2][2] }}</button>
-     </div>
-     </div>
-       <p v-if="winner" class="text-center mt-2.5 mb-2.5">{{ winner }} wins!</p>
-       <p v-else-if="isTie" class="text-center mt-2.5 mb-2.5">It's a tie!</p>
-       <button  @click="resetGame" class="h-120 w-120 p-2 cursor-pointer bg-blue-500 text-white rounded-md text-lg mt-10 mx-auto my-auto">Reset Game</button>
-   </div>
- </template>
- 
+  <p class="text-center mt-2.5 mb-2.5">{{ currentPlayer }}'s turn</p>
+  <div class="flex flex-col justify-center">
+    <div class="container h-80 w-80 bg-gray-500 flex flex-col justify-center items-center mx-auto">
+      <div v-for="(row, rowIndex) in grid" :key="rowIndex" class="flex flex-row">
+        <button
+          v-for="(col, colIndex) in row"
+          :key="colIndex"
+          @click="changeData(rowIndex, colIndex)"
+          class="inner-box h-16 w-16 m-4 text-white bg-gray-600 text-3xl cursor-pointer"
+        >
+          {{ col }}
+        </button>
+      </div>
+    </div>
+    <p v-if="winner" class="text-center mt-2.5 mb-2.5">{{ winner }} wins!</p>
+    <p v-else-if="isTie" class="text-center mt-2.5 mb-2.5">It's a tie!</p>
+    <button @click="resetGame" class="h-120 w-120 p-2 cursor-pointer bg-blue-500 text-white rounded-md text-lg mt-10 mx-auto my-auto">
+      Reset Game
+    </button>
+  </div>
+  <PluginComponent/>
+</template>
+
  <script setup>
  import { ref,nextTick } from "vue";
 
- definePageMeta({
-  middleware : ['auth']
-})
   
  
  const currentPlayer = ref("X");
