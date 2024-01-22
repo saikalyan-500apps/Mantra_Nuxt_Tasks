@@ -1,34 +1,45 @@
+<!-- components/FormComponent -->
 <template>
   <div>
-    <h2 class="text-center">{{ title }}</h2>
+    <p class="text-center text-3xl">{{ Heading }}</p>
     <div class="form">
-      <form @submit.prevent="submitForm" class="flex flex-col">
-        <template v-for="(input, index) in formInputs" :key="index">
-          <label :for="input.id" class="text-green">{{ input.label }}</label>
-          <input :id="input.id" class="h-12 w-full border mb-4"><br/>
-        </template>
-        <button type="submit" class="bg-blue-500 h-12 text-white font-base cursor-pointer">{{ submitButtonText }}</button>
-      </form>
+      <div v-for="(field, fieldIndex) in fields" :key="fieldIndex" class="flex flex-col">
+      <label :for="field.label" class="text-green">{{ field.label }}</label>
+      <input 
+      :type="field.inputfield" 
+      :id="field.label" 
+      v-model="formData[field.label]" 
+      class="h-12 w-full border mb-4" 
+      :class="{ 'border-red-500': !isFieldValid(field.label) }"/>
+      <p v-if="!isFieldValid(field.label)" class="text-red-500">{{ field.error }}</p>
     </div>
+    <button @click="handleSubmit" class="bg-blue-500 h-12 w-40 justify-center text-white font-base cursor-pointer">{{ button }}</button>
   </div>
+    </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+const props = defineProps(["Heading", "fields", "button", "onSubmit"]);
+const formData = ref({});
 
-const props = defineProps(['title', 'formInputs', 'submitButtonText']);
-const formData = ref(createInitialFormData());
+const handleSubmit = () => {
+  for (const [label, value] of Object.entries(formData.value)) {
+    const field = props.fields.find((f) => f.label === label);
+    if (field && field.validation && !field.validation.pattern.test(value)) {
+      field.error = field.validation.error;  
+      return;
+    }
+  }
 
-function submitForm() {
-  props.onSubmit({ ...formData.value });
-  formData.value = createInitialFormData();
+  props.onSubmit(formData.value);
 }
 
-function createInitialFormData() {
-  const initialData = {};
-  props.formInputs.forEach(input => {
-    initialData[input.id] = '';
-  });
-  return initialData;
-}
+const isFieldValid = (fieldName) => {
+  const field = props.fields.find((f) => f.label === fieldName);
+  if (field && field.validation) {
+    return field.validation.pattern.test(formData.value[field.label]);
+  }
+  return true;
+};
+
 </script>

@@ -7,6 +7,7 @@
         <li>Task 3: Data fetch using weather API</li>
         <li>Task 4: Added routing middleware for weather Api.</li>
         <li>Task 5: Added Joke plugin and plugin component for resuable purpose.</li>
+        <li>Task 6: Added Regex to input fields.</li>
       </ul>
        <PluginComponent/>
     </div>
