@@ -26,13 +26,37 @@ export const useFormStore = defineStore("formdata", () => {
     },
   ]);
 
-  const SavedLocalData = ref(
-    typeof localStorage !== 'undefined'
-      ? JSON.parse(localStorage.getItem('registeredUserData')) || null
-      : null
-  );
+  const userData = {
+    loggedInUser: null,
+    registeredUsers: [],
 
-  console.log('Saved User Data:', SavedLocalData.value);
+    initialize: () => {
+      if (typeof localStorage !== 'undefined') {
+        userData.registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
+      }
+    },
 
-  return { RegisterForm, LoginForm, SavedLocalData };
+    storeUser: (user) => {
+      userData.registeredUsers.push(user);
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('registeredUsers', JSON.stringify(userData.registeredUsers));
+      }
+    },
+
+    checkLogin: (username, password) => {
+      return userData.registeredUsers.find(user => user.Username === username && user.Password === password);
+    },
+  };
+
+  userData.initialize();
+
+//   const SavedLocalData = ref(
+//     typeof localStorage !== 'undefined'
+//       ? JSON.parse(localStorage.getItem('registeredUserData')) || null
+//       : null
+//   );
+
+//   console.log('Saved User Data:', SavedLocalData.value);
+
+  return { RegisterForm, LoginForm, SavedLocalData, userData };
 });

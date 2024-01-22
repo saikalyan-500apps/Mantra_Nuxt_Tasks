@@ -15,33 +15,20 @@ import { useFormStore } from '~/store/form';
 const storeData = useFormStore();
 const LoginFormData = ref(storeData.LoginForm);
 
-import { toRefs } from 'vue';
 
 const LoginData = (formData) => {
-  const savedUserData = storeData.SavedLocalData ? storeData.SavedLocalData.value : null;
+  console.log('Form Data:', formData);
 
-  if (savedUserData) {
-    // Convert reactive proxies to plain objects
-    const formDataPlain = toRefs(formData);
-    const savedUserDataPlain = toRefs(savedUserData);
+  const loggedInUser = storeData.userData.checkLogin(formData.Username, formData.Password);
 
-    // Access the values
-    const enteredUsername = formDataPlain.Username;
-    const enteredPassword = formDataPlain.Password;
+  console.log('Registered Users:', storeData.userData.registeredUsers);
 
-    console.log("Entered username:", enteredUsername);
-    console.log("Entered password:", enteredPassword);
-
-    if (
-      enteredUsername === savedUserDataPlain.Username &&
-      enteredPassword === savedUserDataPlain.Password
-    ) {
-      console.log('Successfully logged in!');
-    } else {
-      console.error('Incorrect username or password. Login failed.');
-    }
+  if (loggedInUser) {
+    storeData.userData.loggedInUser = loggedInUser;
+    console.log('Login successful');
   } else {
-    console.error('No saved user data found. Please register again.');
+    console.error('Invalid credentials');
   }
 };
+
 </script>
