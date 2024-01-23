@@ -9,7 +9,7 @@
       :type="field.inputfield" 
       :id="field.label" 
       v-model="formData[field.label]" 
-      class="h-12 w-full border mb-4" 
+      class="h-12 w-full border mb-4 border-blue-500 rounded-md" 
       :class="{ 'border-red-500': !isFieldValid(field.label) }"/>
       <p v-if="!isFieldValid(field.label)" class="text-red-500">{{ field.error }}</p>
     </div>

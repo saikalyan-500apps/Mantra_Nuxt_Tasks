@@ -2,7 +2,7 @@ export default defineNuxtPlugin(nuxtApp => {
     const responses = [
         'Register/login to view entire application',
         'wanna know current temparature head on weather page',
-        "Bored? head on game page"
+        "Bored? head on to game page"
       ];      
 
     nuxtApp.response = () => {

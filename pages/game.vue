@@ -1,13 +1,13 @@
 <template>
   <p class="text-center mt-2.5 mb-2.5">{{ currentPlayer }}'s turn</p>
   <div class="flex flex-col justify-center">
-    <div class="container h-80 w-80 bg-gray-500 flex flex-col justify-center items-center mx-auto">
+    <div class="container h-80 w-80 bg-gray-500 flex flex-col justify-center items-center mx-auto rounded-md">
       <div v-for="(row, rowIndex) in grid" :key="rowIndex" class="flex flex-row">
         <button
           v-for="(col, colIndex) in row"
           :key="colIndex"
           @click="changeData(rowIndex, colIndex)"
-          class="inner-box h-16 w-16 m-4 text-white bg-gray-600 text-3xl cursor-pointer"
+          class="inner-box h-16 w-16 m-4 text-white bg-gray-600 text-3xl cursor-pointer rounded-md"
         >
           {{ col }}
         </button>

@@ -34,6 +34,7 @@ export const useFormStore = defineStore("formdata", () => {
       if (typeof localStorage !== 'undefined') {
         userData.registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
       }
+      console.log('Initialized registeredUsers:', userData.registeredUsers);
     },
 
     storeUser: (user) => {
@@ -44,19 +45,18 @@ export const useFormStore = defineStore("formdata", () => {
     },
 
     checkLogin: (username, password) => {
-      return userData.registeredUsers.find(user => user.Username === username && user.Password === password);
+      console.log('Checking login with:', username, password);
+
+      const user = userData.registeredUsers.find(user => user.Username === username && user.Password === password);
+      
+      console.log('Found user:', user);
+  
+      return user;
     },
   };
 
   userData.initialize();
 
-//   const SavedLocalData = ref(
-//     typeof localStorage !== 'undefined'
-//       ? JSON.parse(localStorage.getItem('registeredUserData')) || null
-//       : null
-//   );
 
-//   console.log('Saved User Data:', SavedLocalData.value);
-
-  return { RegisterForm, LoginForm, SavedLocalData, userData };
+  return { RegisterForm, LoginForm, userData };
 });
