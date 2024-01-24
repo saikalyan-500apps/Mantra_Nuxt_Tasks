@@ -7,7 +7,8 @@
         <li>Task 4: Added routing middleware for weather Api.</li>
         <li>Task 5: Added Joke plugin and plugin component for resuable purpose.</li>
         <li>Task 6: Added Regex to input fields.</li>
-        <li>Task 7: Added closures and object prototype for currency page..</li>
+        <li>Task 7: Added closures and object prototype for currency page.</li>
+        <li>Task 8: Understood about JS async/await and implemented movie api using it.</li>
       </ul>
        <PluginComponent/>
     </div>

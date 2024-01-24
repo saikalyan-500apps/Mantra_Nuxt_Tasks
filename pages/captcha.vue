@@ -4,25 +4,39 @@
    <p class=" text-3xl text-center">Security check</p><br/>
    <p class=" text-2xl text-center">Enter the correct code to navigate to weather api.</p><br/>
   <div class="flex flex-row justify-center items-center">
-    <label for="captcha" class="mt-4">code: {{ correctCode }}</label>
-    <input v-model="userInput" type="text" id="captcha" class="w-120" />
-    <button @click="checkCode" class="mt-4 bg-blue-500 p-4 h-12">Submit</button>
+    <label for="captcha" class="mb-4">code: {{ correctCode }}</label>
+    <input v-model="userInput" type="text" id="captcha" class="h-12 w-1/2 border mb-4 border-blue-500 rounded-md" />
+    <button @click="checkCode" class="mb-4 bg-blue-500 p-4 h-12">Submit</button>
   </div>
   <p class="text-center">{{ message }}</p>
 </template>
 
+<!-- <template>
+  <FormComponent
+    :Heading="captchaForm[0].Heading"
+    :code="correctCode"
+    :fields="captchaForm[0].fields"
+    :button="captchaForm[0].button"
+    :onSubmit="checkCode"
+    :message="message"
+  />
+</template> -->
+
+
+
+
 <script setup>
 import { ref } from 'vue';
-import { useRouter, } from 'vue-router';
 import { useCaptchaStore } from '~/store';
+// import { useCaptchaForm } from '~/store/form';
+
+// const { captchaForm } = useCaptchaForm(); 
 
 const { setCaptchaVerified } = useCaptchaStore();
 
 definePageMeta({
   layout: 'captcha'
 })
-
-const router = useRouter();
 
 const correctCode = ref(generateRandomCode());
 const userInput = ref('');

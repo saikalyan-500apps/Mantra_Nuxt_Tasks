@@ -60,3 +60,16 @@ export const useFormStore = defineStore("formdata", () => {
 
   return { RegisterForm, LoginForm, userData };
 });
+
+export const useCaptchaForm = defineStore('captcha', () => {
+  const captchaForm = ref([
+    {
+      Heading: "Security Check",
+      fields: [
+        { label: "Code", inputfield: "text" },
+      ],
+      button: "Submit",
+    },
+  ])
+  return { captchaForm };
+})
