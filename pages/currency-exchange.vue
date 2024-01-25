@@ -1,7 +1,7 @@
 <template>
-    <div class="flex">
+    <div class="flex justify-center mt-10">
       <!-- Left side: Currency Conversion -->
-      <div class="flex-1 mr-4">
+      <div class="mr-4">
         <label for="fromCurrency">From Currency:</label>
         <select v-model="fromCurrency" id="fromCurrency" class="p-2 border rounded-md">
           <option v-for="currency in currencies" :key="currency.value" :value="currency.value">
@@ -26,21 +26,6 @@
         <div v-if="error !== null" class="mt-4">
           <p class="text-red-700 text-lg font-semibold ml-28">Error:</p>
           <p class="text-xl ml-28">{{ error }}</p>
-        </div>
-      </div>
-  
-      <!-- Right side: Detailed Currencies -->
-      <div class="flex-1">
-        <label class="text-lg font-semibold ml-96">Check Currency Info</label><br/>
-        <select v-model='check' class="p-2 border rounded-md ml-80">
-          <option v-for="currency in currencies" :key="currency.value" :value="currency.value">
-            {{ currency.label }}
-          </option>
-        </select>
-  
-        <div v-if="selectedCurrencyInfo" class="mt-4">
-          <p class="text-lg font-semibold">Detailed Information:</p>
-          <p class="text-xl">{{ selectedCurrencyInfo }}</p>
         </div>
       </div>
     </div>
@@ -94,6 +79,7 @@ const createCurrencyExchangeComponent = () => {
         try {
             const response = await fetch(url, options);
             currencyOptions.value = await response.json();
+            console.log(currencyOptions.value)
         } catch (err) {
             console.error(err);
             error.value = 'Error fetching currency options';

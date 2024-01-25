@@ -6,6 +6,11 @@
     :button="LoginFormData[0].button"
     :onSubmit="LoginData"
   />
+  <p class="text-center mt-5">New user? Register here : 
+     <span style="color: blue;">
+      <nuxt-link to="/register-form">Register</nuxt-link>
+     </span> 
+  </p>
   <div v-if="errorMessage" class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400" role="alert">
     <span class="font-medium">{{ errorMessage }}</span> Please enter correct login details.
   </div>

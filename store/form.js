@@ -1,21 +1,22 @@
 // store/form.js
 import { defineStore } from "pinia";
 
-export const useFormStore = defineStore("formdata", () => {
-    const RegisterForm = ref([
-        {
-          Heading: "Registration",
-          fields: [
-            { label: "Username", inputfield: "text", validation: { pattern: /^[a-zA-Z0-9_-]{3,16}$/, error: "Invalid username" } },
-            { label: "Password", inputfield: "password", validation: { pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/, error: "Password must contain at least 8 characters, one digit, one lowercase and one uppercase letter" } },
-            { label: "Email", inputfield: "text", validation: { pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, error: "Invalid email address" } },
-            { label: "PhoneNumber", inputfield: "tel", validation: { pattern: /^\d{10}$/, error: "Invalid phone number" } },
-          ],
-          button: "Register",
-        },
-      ]);
 
-  const LoginForm = ref([
+export const useFormStore = defineStore("formdata", () => {
+  const RegisterForm = [
+    {
+      Heading: "Registration",
+      fields: [
+        { label: "Username", inputfield: "text" },
+        { label: "Password", inputfield: "password"},
+        { label: "Email", inputfield: "text" },
+        { label: "PhoneNumber", inputfield: "tel" }
+      ],
+      button: "Register",
+    },
+  ];
+
+  const LoginForm = [
     {
       Heading: "Login",
       fields: [
@@ -24,7 +25,7 @@ export const useFormStore = defineStore("formdata", () => {
       ],
       button: "Submit",
     },
-  ]);
+  ];
 
   const userData = {
     loggedInUser: null,
@@ -34,7 +35,6 @@ export const useFormStore = defineStore("formdata", () => {
       if (typeof localStorage !== 'undefined') {
         userData.registeredUsers = JSON.parse(localStorage.getItem('registeredUsers')) || [];
       }
-      console.log('Initialized registeredUsers:', userData.registeredUsers);
     },
 
     storeUser: (user) => {
@@ -45,13 +45,23 @@ export const useFormStore = defineStore("formdata", () => {
     },
 
     checkLogin: (username, password) => {
-      console.log('Checking login with:', username, password);
+      return userData.registeredUsers.find(user => user.Username === username && user.Password === password);
+    },
 
-      const user = userData.registeredUsers.find(user => user.Username === username && user.Password === password);
-      
-      console.log('Found user:', user);
-  
-      return user;
+    validateUsername: (username) => {
+      return /^[a-zA-Z0-9_-]{3,16}$/.test(username);
+    },
+
+    validatePassword: (password) => {
+      return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(password);
+    },
+
+    validateEmail: (email) => {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    },
+
+    validatePhoneNumber: (phoneNumber) => {
+      return /^\d{10}$/.test(phoneNumber);
     },
   };
 
@@ -60,6 +70,7 @@ export const useFormStore = defineStore("formdata", () => {
 
   return { RegisterForm, LoginForm, userData };
 });
+
 
 export const useCaptchaForm = defineStore('captcha', () => {
   const captchaForm = ref([

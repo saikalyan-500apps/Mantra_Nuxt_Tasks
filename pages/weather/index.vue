@@ -1,6 +1,6 @@
 <template>
     <div class="search">
-      <input v-model="placeName"/>
+      <input v-model="placeName" class="border-gray-500" placeholder="Enter City Name"/>
       <button @click="fetchData">Search place</button>
     </div>
     <div class="info">

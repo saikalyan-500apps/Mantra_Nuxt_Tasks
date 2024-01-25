@@ -5,7 +5,7 @@
    <p class=" text-2xl text-center">Enter the correct code to navigate to weather api.</p><br/>
   <div class="flex flex-row justify-center items-center">
     <label for="captcha" class="mb-4">code: {{ correctCode }}</label>
-    <input v-model="userInput" type="text" id="captcha" class="h-12 w-1/2 border mb-4 border-blue-500 rounded-md" />
+    <input v-model="userInput" type="text" id="captcha" class="h-12 w-1/2 border mb-4 border-gray-500 rounded-md" />
     <button @click="checkCode" class="mb-4 bg-blue-500 p-4 h-12">Submit</button>
   </div>
   <p class="text-center">{{ message }}</p>
