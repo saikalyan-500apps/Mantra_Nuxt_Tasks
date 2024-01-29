@@ -5,24 +5,19 @@ export const useRouteStore = defineStore('routes',() => {
     const LeftRouteLinks = [
         {
             id:1,
-            route : '/',
-            name:'Home'
-        },
-        {
-            id:4,
             route : '/game',
             name : 'Game'
         }]
     const RightRouteLinks = [
         {
             id:1,
-            route : '/register-form',
-            name :'Register'
+            route : '/Task-list',
+            name :'Tasks'
         },
         {
             id:2,
-            route : '/login-form',
-            name : 'Login'
+            route : '/profile',
+            name :'Profile'
         }
     ]
     const ApiRouteLink = [

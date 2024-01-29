@@ -1,63 +1,60 @@
 <template>
-  <div class="flex flex-wrap justify-center items-center">
-    <div v-for="(task, index) in tasks" :key="index" @click="flipCard(index)" class="card">
-      <div class="front bg-blue-500 rounded p-4">
-        <p class="text-white font-bold">Task - {{ index + 1 }}</p>
+  <div>
+    <!-- Section 1: Introduction -->
+    <section class="bg-gray-900 text-white py-16 px-8">
+      <div class="max-w-4xl mx-auto">
+        <h1 class="text-4xl font-bold mb-4">Welcome to All-in-One Entertainment!</h1>
+        <p class="text-xl mb-8">Explore movies, check the weather, play games, and more!</p>
+        <NuxtLink class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out" to="/">Get Started</NuxtLink>
       </div>
-      <div v-show="flippedCard === index" class="back bg-green-500 rounded p-4">
-        <p>{{ task.description }}</p>
+    </section>
+
+    <!-- Section 2: Movies -->
+    <section id="movies" class="py-16 px-8 bg-gray-100">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold mb-6">Discover Movies</h2>
+        <p class="text-xl">We use RapidAPI for fetching movie data.</p>
       </div>
-    </div>
+    </section>
+
+    <!-- Section 3: Weather -->
+    <section class="py-16 px-8 bg-gray-200">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold mb-6">Check the Weather</h2>
+        <p class="text-xl">We use RapidAPI for fetching weather information.</p>
+      </div>
+    </section>
+
+    <!-- Section 4: Games -->
+    <section class="py-16 px-8 bg-gray-300">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold mb-6">Play Games</h2>
+        <p class="text-xl">We have created a tic-tac-toe game for you to enjoy and relax.</p>
+      </div>
+    </section>
+
+    <!-- Section 5: Currency Exchange -->
+    <section class="py-16 px-8 bg-gray-400">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold mb-6">Check Currency Exchange</h2>
+        <p class="text-xl">We offer a currency exchange feature to check real-time exchange rates between different countries.</p>
+      </div>
+    </section>
+
+    <!-- Section 6: More Features -->
+    <section class="py-16 px-8 bg-gray-500">
+      <div class="max-w-4xl mx-auto">
+        <h2 class="text-3xl font-bold mb-6">Explore More Features</h2>
+        <p class="text-xl">We are constantly working on adding new features to enhance your experience. Stay tuned for updates!</p>
+      </div>
+    </section>
+
   </div>
 </template>
 
+
 <script setup>
-const tasks = [
-  { description: 'Creating a new project using Nuxt and understanding routes, folder structure, etc.' },
-  { description: 'Form validation (using store)' },
-  { description: 'Data fetch using weather API' },
-  { description: 'Added routing middleware for weather Api.' },
-  { description: 'Added Joke plugin and plugin component for reusable purpose.' },
-  { description: 'Added Regex to input fields.' },
-  { description: 'Added closures and object prototype for currency page.' },
-  { description: 'Understood about JS async/await and implemented movie api using it.' },
-];
-
-let flippedCard = null;
-
-const flipCard = (index) => {
-  flippedCard = flippedCard === index ? null : index;
-};
+ definePageMeta({
+  middleware : ['login']
+})
 </script>
-
-<style scoped>
-.card {
-  perspective: 1000px;
-  width: 120px;
-  height: 120px;
-  margin: 10px;
-  transform-style: preserve-3d;
-  transition: transform 0.5s;
-  cursor: pointer;
-}
-
-.card:hover {
-  transform: rotateY(180deg);
-}
-
-.front,
-.back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-}
-
-.back {
-  transform: rotateY(180deg);
-}
-</style>

@@ -44,6 +44,10 @@
 import { ref } from 'vue';
 import { useFormStore } from '~/store/form';
 
+definePageMeta({
+  layout: 'authentication'
+})
+
 const storeData = useFormStore();
 const RegisterFormData = ref(storeData.RegisterForm);
 const errorMessage = ref('');

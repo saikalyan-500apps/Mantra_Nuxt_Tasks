@@ -19,8 +19,8 @@
         <button @click="fetchExchangeRate" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 ml-28">Fetch Exchange Rate</button>
   
         <div v-if="exchangeRate !== null" class="mt-4">
-          <p class="text-lg font-semibold ml-28">Exchange Rate:</p>
-          <p class="text-xl ml-36">{{ exchangeRate }}</p>
+          <p class="text-lg font-semibold ml-36">Exchange Rate:</p>
+          <p class="text-xl ml-28">{{ exchangeRate }}</p>
         </div>
   
         <div v-if="error !== null" class="mt-4">
@@ -34,6 +34,10 @@
 
 <script setup>
 import { ref,onMounted } from 'vue';
+
+definePageMeta({
+  middleware : ['login']
+})
 
 const currencies = [
   { value: 'SGD', label: 'SGD : Singapore Dollar' },

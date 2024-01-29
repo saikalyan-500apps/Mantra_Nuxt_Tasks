@@ -22,8 +22,14 @@
 <script setup>
 import { ref, watch } from 'vue';
 import { useFormStore } from '~/store/form';
+import {useLoginStore} from '~/store'
+
+definePageMeta({
+  layout: 'authentication'
+})
 
 const storeData = useFormStore();
+const loginStore = useLoginStore();
 const LoginFormData = ref(storeData.LoginForm);
 const errorMessage = ref('');
 const successMessage = ref('');
@@ -33,16 +39,19 @@ const LoginData = (formData) => {
 
   const loggedInUser = storeData.userData.checkLogin(formData.Username, formData.Password);
 
+
   console.log('Registered Users:', storeData.userData.registeredUsers);
 
   if (loggedInUser) {
     storeData.userData.loggedInUser = loggedInUser;
     successMessage.value = 'Login successful';
-    errorMessage.value = ''; // Clear error message
+    errorMessage.value = ''; 
+    navigateTo('/')
+    loginStore.setLoggedIn(true)
     console.log('Login successful');
   } else {
     errorMessage.value = 'Invalid credentials';
-    successMessage.value = ''; // Clear success message
+    successMessage.value = ''; 
     console.error('Invalid credentials');
   }
 };

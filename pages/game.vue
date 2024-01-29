@@ -25,7 +25,9 @@
  <script setup>
  import { ref,nextTick } from "vue";
 
-  
+ definePageMeta({
+  middleware : ['login']
+})
  
  const currentPlayer = ref("X");
  const winner = ref(null);

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="shadow-sm bg-gray-800 p-4">
+    <header class="shadow-sm bg-gray-900 p-4">
       <nav class="flex items-center justify-between">
         <div>
           <ul class="flex gap-8">
@@ -42,7 +42,7 @@
         </div>
         <div>
           <ul class="flex gap-8">
-            <li class="text-white font-bold text-4xl font-sans md:font-serif">Nuxt Tasks</li>
+            <li class="list-style-none"><NuxtLink class="text-white text-3xl font-bold font-sans md:font-serif" to="/">NuxtTasks</NuxtLink></li>
           </ul>
         </div>
         <div>
@@ -60,6 +60,9 @@
       <slot />
     </div>
   </div>
+  <footer class="shadow-sm bg-gray-900 p-4 text-white text-center">
+    &copy; Saikalyan labhishetty 
+  </footer>
 </template>
 
 <script setup>

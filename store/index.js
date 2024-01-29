@@ -25,3 +25,16 @@ export const useCaptchaStore = defineStore({
     },
   },
 });
+
+
+export const useLoginStore = defineStore({
+  id: 'login',
+  state: () => ({
+    loggedIn: false,
+  }),
+  actions: {
+    setLoggedIn(value) {
+      this.loggedIn = value;
+    },
+  },
+});
