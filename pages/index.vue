@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Section 1: Introduction -->
-    <section class="bg-gray-900 text-white py-16 px-8">
+    <section class="bg-gray-900 text-white py-16 px-8 w-full">
       <div class="max-w-4xl mx-auto">
         <h1 class="text-4xl font-bold mb-4">Welcome to All-in-One Entertainment!</h1>
         <p class="text-xl mb-8">Explore movies, check the weather, play games, and more!</p>
@@ -10,7 +10,7 @@
     </section>
 
     <!-- Section 2: Movies -->
-    <section id="movies" class="py-16 px-8 bg-gray-100">
+    <section id="movies" class="py-16 px-8 bg-gray-100 w-full">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-3xl font-bold mb-6">Discover Movies</h2>
         <p class="text-xl">We use RapidAPI for fetching movie data.</p>
@@ -18,7 +18,7 @@
     </section>
 
     <!-- Section 3: Weather -->
-    <section class="py-16 px-8 bg-gray-200">
+    <section class="py-16 px-8 bg-gray-200 w-full">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-3xl font-bold mb-6">Check the Weather</h2>
         <p class="text-xl">We use RapidAPI for fetching weather information.</p>
@@ -26,7 +26,7 @@
     </section>
 
     <!-- Section 4: Games -->
-    <section class="py-16 px-8 bg-gray-300">
+    <section class="py-16 px-8 bg-gray-300 w-full">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-3xl font-bold mb-6">Play Games</h2>
         <p class="text-xl">We have created a tic-tac-toe game for you to enjoy and relax.</p>
@@ -34,7 +34,7 @@
     </section>
 
     <!-- Section 5: Currency Exchange -->
-    <section class="py-16 px-8 bg-gray-400">
+    <section class="py-16 px-8 bg-gray-400 w-full">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-3xl font-bold mb-6">Check Currency Exchange</h2>
         <p class="text-xl">We offer a currency exchange feature to check real-time exchange rates between different countries.</p>
@@ -42,7 +42,7 @@
     </section>
 
     <!-- Section 6: More Features -->
-    <section class="py-16 px-8 bg-gray-500">
+    <section class="py-16 px-8 bg-gray-500 w-full">
       <div class="max-w-4xl mx-auto">
         <h2 class="text-3xl font-bold mb-6">Explore More Features</h2>
         <p class="text-xl">We are constantly working on adding new features to enhance your experience. Stay tuned for updates!</p>

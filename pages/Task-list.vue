@@ -1,4 +1,11 @@
 <template>
+  <div>
+    <h1 class="text-4xl font-bold mb-8">Task Overview</h1>
+
+    <p class="text-lg mb-6">
+      Here are some tasks that were completed during the development of this project. Each task represents a key aspect of the project, ranging from setting up the initial project structure to implementing various features.
+    </p>
+  </div>
     <div class="task-container ">
       <div class="task-box " v-for="(task, index) in tasks" :key="index" @mouseover="flipCard(index)">
         <div class="task-content front">
@@ -67,11 +74,12 @@
   }
   
   .front {
-    background-color: #4CAF50;
+    background-color: rgb(14 19 30);;
   }
   
   .back {
-    background-color: #f44336;
+    background-color: white;
+    color: rgb(14 19 30) ;
     transform: rotateY(180deg);
   }
   

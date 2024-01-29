@@ -5,13 +5,13 @@
         <div>
           <ul class="flex gap-8">
             <li v-for="link in Leftpagelink" :key="link.id">
-              <NuxtLink class="text-white font-bold text-lg font-sans md:font-serif" :to="link.route">{{ link.name }}</NuxtLink>
+              <NuxtLink class="text-white font-bold text-xl font-sans md:font-serif" :to="link.route">{{ link.name }}</NuxtLink>
             </li>
             <li>
          <!-- custom dropdown starts here -->
           <div class="relative inline-block text-left">
             <button type="button" @click="toggleDropdown"
-              class="inline-flex justify-center text-white font-bold text-lg font-sans md:font-serif w-full rounded-md px-4 bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:bg-gray-800"
+              class="inline-flex justify-center text-white font-bold text-xl font-sans md:font-serif w-full rounded-md px-4 bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:bg-gray-800"
             >
               {{ selectedApiName || 'Select an API link' }}
               <!-- Arrow icon for dropdown -->
@@ -49,8 +49,11 @@
           <div>
             <ul class="flex gap-8">
               <li v-for="link in RightpageLink" :key="link.id">
-                <NuxtLink class="text-white font-bold text-lg font-sans md:font-serif hover:bg-gray-500 p-3 rounded-md" :to="link.route">{{ link.name }}</NuxtLink>
+                <NuxtLink class="text-white font-bold text-xl font-sans md:font-serif hover:bg-gray-500 p-3 rounded-md" :to="link.route">{{ link.name }}</NuxtLink>
               </li>
+              <div v-if="loggedInUser" class="relative inline-flex cursor-pointer items-center justify-center w-10 h-10 overflow-hidden bg-gray-100 rounded-full dark:bg-gray-600">
+                <span class="font-medium text-gray-600 dark:text-gray-300">{{ loggedInUser.Username.substring(0, 2) }}</span>
+              </div>
             </ul>
           </div>
         </div>
@@ -67,6 +70,9 @@
 
 <script setup>
 import { useRouteStore } from '~/store/routepage';
+import { useFormStore } from '~/store/form';
+
+const { loggedInUser } = useFormStore().userData;
 
 const RouteStore = useRouteStore();
 const Leftpagelink = RouteStore.LeftRouteLinks;
