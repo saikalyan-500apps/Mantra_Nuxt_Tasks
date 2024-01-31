@@ -12,6 +12,11 @@ export const useRouteStore = defineStore('routes',() => {
             id:2,
             route : '/shape',
             name : 'shape'
+        },
+        {
+            id:3,
+            route : '/code',
+            name : 'code'
         }
     ]
     const RightRouteLinks = [
