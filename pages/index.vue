@@ -54,7 +54,5 @@
 
 
 <script setup>
- definePageMeta({
-  middleware : ['login']
-})
+
 </script>
