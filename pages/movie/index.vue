@@ -33,7 +33,7 @@
     <!-- movieList -->
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
       <div v-for="movie in paginatedMovies" :key="movie._id" class="bg-white p-4 rounded shadow-md">
-        <img :src="movie.poster_path" alt="movie_image" class="w-full h-110 object-cover mb-4 rounded-md">
+        <img :src="movie.poster_path" alt="movie_image" class="w-240 h-100  mb-4 rounded-md">
         <h4 class="text-lg font-semibold mb-2 text-center">{{ movie.title }}</h4>
         <button @click="navigateTo(`/movie/${movie._id}`)" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 active:bg-blue-800 ml-24">
           More details
@@ -45,6 +45,10 @@
 
 <script setup>
 import { ref, computed } from 'vue';
+
+definePageMeta({
+  middleware : ['login']
+})
 
 const movieData = ref([]);
 const itemsPerPage = 12;
@@ -81,7 +85,9 @@ const fetchData = async () => {
     console.log(error);
   }
 };
-fetchData();
+onMounted(() => {
+    fetchData()
+})
 
 // Method to sort movies based on the selected option
 const sortMovies = (option) => {

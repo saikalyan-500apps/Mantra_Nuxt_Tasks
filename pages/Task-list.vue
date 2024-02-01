@@ -34,6 +34,8 @@
     { description: 'Added Regex to input fields.' },
     { description: 'Added closures and object prototype for currency page.' },
     { description: 'Understood about JS async/await and implemented movie api using it.' },
+    { description: 'Understood oops concepts and built shape generator route.' },
+    { description: 'revised sorting algorithms and implemented it on movie app.' }
   ];
   
   const flipped = ref(null);

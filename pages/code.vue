@@ -1,14 +1,17 @@
 <template>
- 
-  <div class="bg-gray-100 p-8 rounded-lg shadow-lg">
+  <div class="bg-gray-300 p-8 rounded-lg shadow-lg">
     <div v-for="(item, index) in formItems" :key="index" class="mb-4">
       <div class="flex flex-col md:flex-row items-center mb-2">
-        <label class="text-gray-800 mr-2 md:w-1/5">Label:</label>
-        <input v-model="item.label" type="text" class="bg-white text-gray-800 py-2 px-4 rounded focus:outline-none focus:bg-gray-200 flex-1 md:mr-4">
-        <label class="text-gray-800 mr-2 mt-2 md:mt-0 md:w-1/5">Type:</label>
-        <select v-model="item.type" class="bg-white text-gray-800 py-2 px-4 rounded focus:outline-none focus:bg-gray-200 md:w-2/5">
+        <label class="text-gray-800 mr-2">Label:</label>
+        <input v-model="item.label" type="text" class="bg-white text-gray-800 py-2 px-4 rounded focus:outline-none focus:bg-gray-200 flex-1 md:w-2/5">
+        <label class="text-gray-800 mt-2 mr-2">Type:</label>
+        <select v-model="item.type" @change="checkRadio" class="bg-white text-gray-800 py-2 px-4 rounded focus:outline-none focus:bg-gray-200 flex-1 md:w-2/5">
           <option v-for="inputType in inputTypes" :value="inputType" :key="inputType">{{ inputType }}</option>
         </select>
+      </div>
+      <div v-if="item.type === 'radio'">
+        <label class="text-gray-800 mr-2">Number of Radio Buttons:</label>
+        <input v-model="item.radioCount" type="number" min="1" class="bg-white text-gray-800 py-2 px-4 rounded focus:outline-none focus:bg-gray-200 w-16">
       </div>
     </div>
 
@@ -32,18 +35,17 @@
       <button @click="downloadForm" class="bg-purple-500 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full mt-4">
         Download Form Code
       </button>
-      <p v-if="copied" class="absolute top-0 right-0 mt-2 mr-2 text-sm text-green-500">Copied!</p>
+      <p v-if="copied" class="absolute top-0 right-0 mb-12 mr-2 text-sm text-white">Copied!</p>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import { ClipboardIcon } from '@heroicons/vue/24/solid'
-
+import { ClipboardIcon } from '@heroicons/vue/24/solid';
 
 const formItems = ref([]);
-const inputTypes = ref(['text','password', 'checkbox', 'radio', 'number', 'email', 'date', 'color', 'button', 'datetime-local', 'file', 'image', 'search']);
+const inputTypes = ref(['text','password', 'checkbox', 'radio', 'number', 'email', 'date', 'color', 'button', 'datetime-local', 'file', 'search']);
 const buttonTypes = ref(['submit', 'reset', 'button']);
 let buttonType = ref('submit');
 let generatedForm = ref('');
@@ -52,18 +54,28 @@ let copied = ref(false);
 const addFormItem = () => {
   formItems.value.push({
     label: '',
-    type: 'text'
+    type: 'text',
+    radioCount: 1
   });
 };
 
 const generateForm = () => {
   let formHTML = '<form>';
   formItems.value.forEach(item => {
-    formHTML += `<div class="mb-4">
-      <label>${item.label}:</label><input type="${item.type}" value="${''}" name="${item.label.toLowerCase()}" id="${item.label.substring(1, 3)}" class="bg-white text-gray-800 py-2 px-4 rounded">
-    </div>`;
+    if (item.type === 'radio') {
+      formHTML += ` <label>${item.label} :</label><br/>`
+      for (let i = 1; i <= item.radioCount; i++) {
+        formHTML += `<div>
+          <label>${item.label} ${i}:</label><input type="${item.type}" value="${''}" name="${item.label.toLowerCase()}" id="${item.label.substring(0, 3)}_${i}">
+        </div>`;
+      }
+    } else {
+      formHTML += `<div>
+        <label>${item.label}:</label><input type="${item.type}" value="${''}" name="${item.label.toLowerCase()}" id="${item.label.substring(0, 3)}">
+      </div>`;
+    }
   });
-  formHTML += `<div><button type="${buttonType.value}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">${buttonType.value}</button></div>`;
+  formHTML += `<div><button type="${buttonType.value}">${buttonType.value}</button></div>`;
   formHTML += '</form>';
   generatedForm.value = formHTML;
 };
@@ -85,3 +97,4 @@ const downloadForm = () => {
   element.click();
 };
 </script>
+

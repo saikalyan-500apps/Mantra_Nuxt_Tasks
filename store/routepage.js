@@ -7,16 +7,6 @@ export const useRouteStore = defineStore('routes',() => {
             id:1,
             route : '/game',
             name : 'Game'
-        },
-        {
-            id:2,
-            route : '/shape',
-            name : 'shape'
-        },
-        {
-            id:3,
-            route : '/code',
-            name : 'code'
         }
     ]
     const RightRouteLinks = [
@@ -48,5 +38,17 @@ export const useRouteStore = defineStore('routes',() => {
             name:'Movie'
         }
     ]
-    return { LeftRouteLinks, RightRouteLinks, ApiRouteLink };
+    const LearningRouteLink = [
+        {
+            id:1,
+            route : '/shape',
+            name:'Shape generator'
+        },
+        {
+            id:2,
+            route : '/code',
+            name:'Form-Code generator'
+        },
+    ]
+    return { LeftRouteLinks, RightRouteLinks, ApiRouteLink, LearningRouteLink };
 })

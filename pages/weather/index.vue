@@ -16,7 +16,7 @@
   </template>
   
   <script setup>
-  import { ref } from 'vue';
+  import { ref,onMounted } from 'vue';
 
   definePageMeta({
   layout: 'weather',
@@ -48,6 +48,9 @@
       console.error(error);
     }
   };
+  onMounted(() => {
+    fetchData()
+  })
   </script>
 
   <style>
