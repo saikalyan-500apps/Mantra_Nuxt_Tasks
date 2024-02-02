@@ -4,7 +4,7 @@
     <section class="bg-gray-900 text-white py-16 w-full">
       <div class="max-w-4xl mx-auto">
         <h1 class="text-4xl font-bold mb-4 mt-8">Welcome to All-in-One Entertainment!</h1>
-        <p class="text-xl mb-8">Explore movies, check the weather, play games, and more!</p>
+        <p class="text-xl mb-8">Explore movies, learn, play games, and more!</p>
         <NuxtLink class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full transition duration-300 ease-in-out" to="/register-form">Get Started</NuxtLink>
       </div>
     </section>
