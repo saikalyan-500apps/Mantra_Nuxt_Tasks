@@ -20,7 +20,7 @@
       </ul>
     </div>
     <div v-if="successMessage" class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
-      <span class="font-medium">{{ successMessage }}</span> 
+      <span class="font-medium">{{ successMessage }}</span>
     </div>
     <div class="flex p-4 mt-4 mb-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 text-blue-400" role="alert">
       <svg class="flex-shrink-0 inline w-4 h-4 me-3 mt-[2px]" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
@@ -52,6 +52,7 @@ const storeData = useFormStore();
 const RegisterFormData = ref(storeData.RegisterForm);
 const errorMessage = ref('');
 const successMessage = ref('');
+const RedirectionMessage = ref('');
 const validationErrors = ref([]);
 
 const RegisterData = (formData) => {
@@ -75,6 +76,10 @@ const RegisterData = (formData) => {
 
   storeData.userData.storeUser(userData);
   successMessage.value = 'Registration successful!';
+
+  setTimeout(() => {
+    navigateTo('/login-form');
+  }, 2000);
 };
 
 const validateFormData = (formData) => {

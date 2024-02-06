@@ -57,6 +57,7 @@
       </div>
     </section>
 
+    <PluginComponent/>
   </div>
 </template>
 

@@ -35,6 +35,7 @@ const formData = ref({});
 
 const handleSubmit = () => {
   props.onSubmit(formData.value);
+  formData.value = '';
 }
 console.log(formData.value)
 

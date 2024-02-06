@@ -24,7 +24,7 @@
       </select>
     </div>
     
-    <button @click="generateForm" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full mb-4">Generate Form</button>
+    <button @click="generateForm" class="bg-blue-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full mb-4">Generate Form</button>
 
     <div v-if="generatedForm" class="bg-black p-4 rounded relative">
       <h2 class="text-xl mb-4 text-white">Generated Form</h2>

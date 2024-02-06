@@ -29,6 +29,7 @@
         </div>
       </div>
     </div>
+    <PluginComponent/>
   </template>
   
 
@@ -60,7 +61,6 @@ const currencies = [
   { value: 'THB', label: 'THB : Thai Baht' },
   { value: 'VND', label: 'VND : Vietnamese Dong' }
 ];
-const check = ref('')
 
 const createCurrencyExchangeComponent = () => {
     // Private variables
