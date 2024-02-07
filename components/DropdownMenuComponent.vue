@@ -16,7 +16,7 @@
 
         <!-- Dropdown menu -->
         <div v-show="isDropdownOpen"
-          class="origin-top-right absolute left mt-2 w-56 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+          class="origin-top-right absolute left mt-2 w-30 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
           <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
             <div v-for="link in RouteLink" :key="link.id" @click="selectLink(link)"
               class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">

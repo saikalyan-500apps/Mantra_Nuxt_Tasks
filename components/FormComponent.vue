@@ -7,35 +7,49 @@
       <!-- Form fields -->
       <div v-for="(field, fieldIndex) in fields" :key="fieldIndex" class="mb-4">
         <label :for="field.label" class="block text-sm text-gray-600">{{ field.label }} - {{ code }}</label>
-        <input
-          :type="field.inputfield"
-          :id="field.label"
-          v-model="formData[field.label]"
-          class="h-12 w-full border border-blue-500 rounded-md px-3 py-2 transition focus:outline-none focus:border-blue-700"
-        />
-    </div>
-    <button
-        @click="handleSubmit"
-        class="bg-blue-500 hover:bg-blue-600 text-white h-12 w-full rounded-md transition duration-300 ease-in-out"
-      >
+        <!-- Render select field if the inputfield type is 'select' -->
+        <select v-if="field.inputfield === 'select'"
+                :id="field.label"
+                v-model="field.value"
+                class="h-12 w-full border border-blue-500 rounded-md px-3 py-2 transition focus:outline-none focus:border-blue-700">
+          <option v-for="(option, index) in field.options" :key="index" :value="option.value">{{ option.label }}</option>
+        </select>
+        <!-- Render regular input field for other types -->
+        <input v-else
+               :type="field.inputfield"
+               :id="field.label"
+               v-model="field.value"
+               class="h-12 w-full border border-blue-500 rounded-md px-3 py-2 transition focus:outline-none focus:border-blue-700"/>
+      </div>
+
+      <button @click="handleSubmit"
+              class="bg-blue-500 hover:bg-blue-600 text-white h-12 w-full rounded-md transition duration-300 ease-in-out">
         {{ button }}
       </button>
-    <p class="text-white">{{ message }}</p>
-  </div>
+
+      <p class="text-white">{{ msg }}</p>
     </div>
+  </div>
 </template>
 
+
 <script setup>
-const props = defineProps(["Heading", "fields", "button", "onSubmit", "code", "message"]);
+import { defineProps, defineEmits } from 'vue'
+const props = defineProps(["Heading", "fields", "button", "code", "msg"]);
 
 console.log(props.code)
 console.log(props.message)
 
 const formData = ref({});
+const emits = defineEmits(['form-submit'])
 
 const handleSubmit = () => {
-  props.onSubmit(formData.value);
-  formData.value = '';
+  const formData = {}
+    props.fields.forEach(field => {
+      formData[field.label] = field.value
+      field.value = '' // reset value of the field after submiting.
+    })
+    emits("form-submit", formData)
 }
 console.log(formData.value)
 

@@ -3,7 +3,6 @@
       <input v-model="placeName" class="border-gray-500" placeholder="Enter City Name"/>
       <button @click="fetchData">Search place</button>
     </div>
-      <PluginComponent/>
 
         <div class="relative mx-auto border-gray-400 dark:border-gray-400 bg-gray-400 border-[8px] rounded-t-xl h-[172px] max-w-[301px] md:h-[294px] md:max-w-[512px] mt-12">
             <div class="rounded-lg overflow-hidden h-[156px] md:h-[278px] bg-white dark:bg-gray-800">

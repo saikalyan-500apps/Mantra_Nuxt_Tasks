@@ -22,8 +22,8 @@ export const useRouteStore = defineStore('routes',() => {
         },
         {
             id:2,
-            route : '/profile',
-            name :'Profile'
+            route : '/users',
+            name :'User Details'
         }
     ]
     const ApiRouteLink = [
@@ -47,13 +47,17 @@ export const useRouteStore = defineStore('routes',() => {
         {
             id:1,
             route : '/shape',
-            name:'Shape generator'
+            name:'Shape-gen'
         },
         {
             id:2,
             route : '/code',
-            name:'Form-Code generator'
+            name:'Form-Code'
         },
     ]
-    return { LeftRouteLinks, RightRouteLinks, ApiRouteLink, LearningRouteLink };
+    const UserRoute = [
+        { id: 1, name: 'Profile', route: '/profile' },
+        { id: 2, name: 'Logout' }
+      ];
+    return { LeftRouteLinks, RightRouteLinks, ApiRouteLink, LearningRouteLink, UserRoute};
 })

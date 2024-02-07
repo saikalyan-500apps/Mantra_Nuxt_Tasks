@@ -19,7 +19,6 @@
       Reset Game
     </button>
   </div>
-  <PluginComponent/>
 </template>
 
  <script setup>

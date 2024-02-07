@@ -4,7 +4,7 @@
     :Heading="LoginFormData[0].Heading"
     :fields="LoginFormData[0].fields"
     :button="LoginFormData[0].button"
-    :onSubmit="LoginData"
+    @form-submit="LoginData"
   />
   <p class="text-center mt-5">New user? Register here : 
      <span style="color: blue;">
