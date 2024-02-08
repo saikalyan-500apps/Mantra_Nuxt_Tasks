@@ -1,37 +1,39 @@
 <template>
-    <div class="min-h-screen bg-gray-100 flex flex-col items-center">
-      <h1 class="text-3xl font-bold mb-6">Create Shape</h1>
-      <label for="shape" class="mb-2">Select Shape:</label>
-      <select v-model="selectedShape" @change="resetProperties" class="mb-4 p-2 border rounded">
+  <div class="h-screen bg-gray-100 flex">
+    <!-- Left compartment -->
+    <div class="w-1/2 bg-zinc-800 flex flex-col items-center py-8">
+      <h1 class="text-3xl font-bold mb-6 text-white">Create Shape</h1>
+      <label for="shape" class="mb-2 text-white">Select Shape:</label>
+      <select v-model="selectedShape" @change="resetProperties" class="mb-4 p-2 border rounded w-72">
         <option value="">Select</option>
         <option value="circle">Circle</option>
         <option value="rectangle">Rectangle</option>
         <option value="square">Square</option>
       </select>
-  
+
       <div v-if="selectedShape" class="flex flex-col items-center mb-4">
-        <label for="height" class="mb-1">Height:</label>
-        <input type="number" v-model="shape.height" class="w-36 mb-2 p-2 border rounded" />
-  
-        <label for="width" class="mb-1">Width:</label>
-        <input type="number" v-model="shape.width" class="w-36 mb-2 p-2 border rounded" />
-  
-        <label for="color" class="mb-1">Color:</label>
-        <input type="color" v-model="shape.color" class="w-36 mb-4 p-2 border rounded" />
-  
-        <button @click="createShape" class="bg-blue-500 text-white py-2 px-4 rounded hover:bg-blue-600">Create</button>
-      </div>
-  
-      <div class="flex flex-col items-center">
-        <h2 class="text-xl font-bold mb-2">Preview:</h2>
-        <div :style="previewStyle" class="preview border-4 border-gray-400 rounded-lg"></div>
+        <label for="height" class="mb-1 text-white">Height:</label>
+        <input type="number" v-model="shape.height" class="w-72 mb-2 p-2 border rounded" />
+
+        <label for="width" class="mb-1 text-white">Width:</label>
+        <input type="number" v-model="shape.width" class="w-72 mb-2 p-2 border rounded" />
+
+        <label for="color" class="mb-1 text-white">Color:</label>
+        <input type="color" v-model="shape.color" class="w-72 h-12 mb-4 p-2 border rounded" />
+
+        <button @click="createShape" class="bg-blue-700 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Create</button>
       </div>
     </div>
-  </template>
-  
+
+    <!-- Right compartment -->
+    <div class="w-1/2 bg-zinc-900 flex items-center justify-center">
+      <div :style="previewStyle" class="preview border-4 border-gray-400 rounded-lg"></div>
+    </div>
+  </div>
+</template>
+
   <script setup>
   import { ref } from 'vue';
-  
   class Shape {
     constructor(height, width, color) {
       this.height = height;

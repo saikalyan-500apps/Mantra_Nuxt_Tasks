@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-zinc-900">
     <h1 class="text-3xl text-center font-bold font-sans md:font-serif">Movie list</h1>
     <!-- Pagination controls -->
     <div class="flex justify-center mt-4">
@@ -20,7 +20,7 @@
     </div>
 
         <!-- Sort options -->
-    <div class="flex justify-end mt-4">
+    <div class="flex justify-end mt-4 mb-4 mr-4">
       <label class="mr-2">Sort:</label>
       <select @change="sortMovies($event.target.value)">
         <option value="default">Default</option>

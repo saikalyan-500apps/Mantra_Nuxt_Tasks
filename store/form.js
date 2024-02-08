@@ -75,28 +75,33 @@ export const useFormStore = defineStore("formdata", () => {
 export const useCaptchaForm = defineStore('captcha', () => {
   const captchaForm = [
     {
-      Heading: "Security Check",
-      fields: [
+      Form_Heading: "Security Check",
+      Form_Fields: [
         { label: "code", inputfield: "text" , value:''},
       ],
-      button: "Submit",
+      Form_Button: "Submit",
     },
   ]
   return { captchaForm };
 })
 
 export const useShapeForm = defineStore('shape', () => {
-    const ShapeForm = [
+  
+  const shapeForm = [
     {
-      Heading : "create shape",
-      fields :[
-        {label :"select shape", inputfield:'select', options: ['Circle', 'Rectangle', 'Square'],value:''},
-        {label :"Height", inputfield:'number', value:''},
-        {label :"Width", inputfield:'number', value:''},
-        {label : "color", inputfield:'color', value:''}   
-    ],
-      button : "generate shape"
+      Form_heading : "Create Shape",
+      Form_fields : [
+        {label : "select shape", inputfield:"select", options:[{label:"Circle", value:"circle"},
+                                                               {label:"Rectangle" , value:"rectange"},
+                                                                {label:"Square", value:"square"}]},
+        {label : "height", inputfield:'number', value:""},
+        {label : "width", inputfield:'number', value:""},
+        {label : "color", inputfield:'color', value:""}  
+      ],
+      Form_button : "Generate Shape"
     }
   ]
-  return { ShapeForm };
+
+
+  return { shapeForm };
 })

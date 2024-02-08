@@ -57,7 +57,7 @@ export const useRouteStore = defineStore('routes',() => {
     ]
     const UserRoute = [
         { id: 1, name: 'Profile', route: '/profile' },
-        { id: 2, name: 'Logout' }
+        { id: 2, name: 'Logout', route: NaN }
       ];
     return { LeftRouteLinks, RightRouteLinks, ApiRouteLink, LearningRouteLink, UserRoute};
 })

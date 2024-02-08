@@ -1,15 +1,16 @@
 <template>
-    <div class="flex justify-center mt-10">
+  <div class="h-screen bg-zinc-800">
+    <div class="flex justify-center">
       <!-- Left side: Currency Conversion -->
       <div class="mr-4">
-        <label for="fromCurrency">From Currency:</label>
+        <label for="fromCurrency" class="text-white">From Currency:</label>
         <select v-model="fromCurrency" id="fromCurrency" class="p-2 border rounded-md">
           <option v-for="currency in currencies" :key="currency.value" :value="currency.value">
             {{ currency.label }}
           </option>
         </select><br/>
         <br/>
-        <label for="toCurrency" class="mt-4">To Currency:</label>
+        <label for="toCurrency" class="mt-4 text-white">To Currency:</label>
         <select v-model="toCurrency" id="toCurrency" class="p-2 border rounded-md ml-5">
           <option v-for="currency in currencies" :key="currency.value" :value="currency.value">
             {{ currency.label }}
@@ -19,8 +20,8 @@
         <button @click="fetchExchangeRate" class="mt-4 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 ml-28">Fetch Exchange Rate</button>
   
         <div v-if="exchangeRate !== null" class="mt-4">
-          <p class="text-lg font-semibold ml-36">Exchange Rate:</p>
-          <p class="text-xl ml-28">{{ exchangeRate }}</p>
+          <p class="text-lg font-semibold ml-36 text-white">Exchange Rate:</p>
+          <p class="text-xl ml-28 text-white">{{ exchangeRate }}</p>
         </div>
   
         <div v-if="error !== null" class="mt-4">
@@ -29,6 +30,8 @@
         </div>
       </div>
     </div>
+  </div>
+    
   </template>
   
 

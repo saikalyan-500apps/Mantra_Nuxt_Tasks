@@ -5,7 +5,7 @@
       <!-- custom drop down for learn link -->
       <div class="relative inline-block text-left">
         <button type="button" @click="toggleDropdown"
-          class="inline-flex justify-center text-white font-bold text-xl font-sans md:font-serif w-full rounded-md px-4 bg-gray-800 text-white hover:bg-gray-700 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:bg-gray-800">
+          class="inline-flex justify-center text-white font-bold text-xl font-sans md:font-serif w-full rounded-md px-4 bg-gray-950 text-white hover:bg-gray-700 focus:outline-none focus:border-blue-300 focus:ring focus:ring-blue-200 active:bg-gray-800">
           {{ selectedName || name }}
           <!-- Arrow icon for dropdown -->
           <svg class="-mr-1 ml-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -16,10 +16,10 @@
 
         <!-- Dropdown menu -->
         <div v-show="isDropdownOpen"
-          class="origin-top-right absolute left mt-2 w-30 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5">
+          class="origin-top-right absolute left mt-2 w-30 rounded-md shadow-lg bg-gray-700 ring-1 ring-black ring-opacity-5">
           <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
             <div v-for="link in RouteLink" :key="link.id" @click="selectLink(link)"
-              class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100">
+              class="cursor-pointer block px-4 py-2 text-sm text-white hover:bg-gray-100 hover:text-gray-800">
               {{ link.name }}
             </div>
           </div>
@@ -48,5 +48,15 @@ function toggleDropdown() {
 function selectLink(link) {
   emits('toggleDropdown');
   emits('selectLink', link);
+}
+
+onMounted(() => {
+  document.addEventListener('click', closeDropdown);
+});
+
+function closeDropdown(event) {
+  if (!event.target.closest('.relative')) {
+    isDropdownOpen.value = false;
+  }
 }
 </script>

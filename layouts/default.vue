@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="shadow-sm bg-gray-900 p-4">
+    <header class="shadow-sm bg-gray-950 p-4">
       <nav class="flex items-center justify-between">
         <div>
           <ul class="flex gap-8">
@@ -15,7 +15,6 @@
                 @toggleDropdown="toggleDropdown()" 
                 @selectLink="selectLearnLink" 
                 :RouteLink="LearnRouteLink" />
-              
               <!-- Dropdown menu for Api link -->
               <DropdownMenuComponent 
                 name="Api" 
@@ -39,8 +38,8 @@
               <li v-for="link in RightpageLink" :key="link.id">
                 <NuxtLink class="text-white font-bold text-xl font-sans md:font-serif hover:bg-gray-500 p-3 rounded-md" :to="link.route">{{ link.name }}</NuxtLink>
               </li>
-              <DropdownMenuComponent 
-                  name="user"
+              <DropdownMenuComponent v-if="loggedInUser"
+                  :name="loggedInUser.Username"
                   :selectedName="selectedUserName" 
                   :RouteLink="UserRouteLink" 
                   @toggleDropdown="toggleDropdown" 
@@ -58,7 +57,7 @@
       <PluginComponent/>
     </div>
     <!-- Footer -->
-    <footer class="shadow-sm bg-gray-900 p-4 text-white text-center fixed bottom-0 left-0 right-0">
+    <footer class="shadow-sm bg-gray-950 p-4 text-white text-center fixed bottom-0 left-0 right-0">
       &copy; Saikalyan labhishetty 
     </footer>
   </div>
@@ -67,8 +66,10 @@
 <script setup>
 import { useRouteStore } from '~/store/routepage';
 import { useFormStore } from '~/store/form';
+// import { useRoute } from 'vue-router';
 
-// const  {loggedInUser} = useFormStore().userData;
+// const router = useRoute();
+const  {loggedInUser} = useFormStore().userData;
 
 const RouteStore = useRouteStore();
 const Leftpagelink = RouteStore.LeftRouteLinks;
@@ -112,9 +113,11 @@ const selectedLearnName = computed(() => {
 function selectUserLink(link) {
   selectedUserLink.value = link.route;
   isDropdownOpen.value = false;
-  navigateTo(selectedUserLink.value);
-  if (selectedUserLink.value === 'Logout') {
-    location.reload(); 
+  if (selectedUserLink === NaN) {
+    window.location.reload()
+    // router.push(router.fullPath).catch(() => {})
+  }else {
+    navigateTo(selectedUserLink.value);
   }
 }
 
@@ -122,7 +125,5 @@ const selectedUserName = computed(() => {
   const selectedLink_3 = UserRouteLink .find(link => link.route === selectedUserLink.value);
   return selectedLink_3 ? selectedLink_3.name : null;
 });
-
-
 
 </script>

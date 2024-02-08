@@ -1,5 +1,6 @@
 <template>
-  <p class="text-center mt-2.5 mb-2.5">{{ currentPlayer }}'s turn</p>
+  <div class="h-screen bg-neutral-800">
+  <p class="text-center mb-2.5 text-white">{{ currentPlayer }}'s turn</p>
   <div class="flex flex-col justify-center">
     <div class="container h-80 w-80 bg-gray-500 flex flex-col justify-center items-center mx-auto rounded-md">
       <div v-for="(row, rowIndex) in grid" :key="rowIndex" class="flex flex-row">
@@ -13,11 +14,12 @@
         </button>
       </div>
     </div>
-    <p v-if="winner" class="text-center mt-2.5 mb-2.5">{{ winner }} wins!</p>
-    <p v-else-if="isTie" class="text-center mt-2.5 mb-2.5">It's a tie!</p>
+    <p v-if="winner" class="text-center mt-2.5 mb-2.5 text-white">{{ winner }} wins!</p>
+    <p v-else-if="isTie" class="text-center mt-2.5 mb-2.5 text-white">It's a tie!</p>
     <button @click="resetGame" class="h-120 w-120 p-2 cursor-pointer bg-blue-500 text-white rounded-md text-lg mt-10 mx-auto my-auto">
       Reset Game
     </button>
+  </div>
   </div>
 </template>
 

@@ -1,6 +1,7 @@
 <template>
-    <div class="max-w-screen-md mx-auto">
-      <h1 class="text-3xl text-center font-bold font-sans md:font-serif mb-6">Movie Info</h1>
+  <div class="h-screen bg-zinc-900">
+    <div class="max-w-screen-md mx-auto bg-zinc-000">
+      <h1 class="text-3xl text-center text-white font-bold font-sans md:font-serif mb-6">Movie Info</h1>
   
       <div class="mb-6">
         <img :src="movie.backdrop_path" alt="cover_image" class="w-full h-auto rounded-md shadow-md">
@@ -10,21 +11,20 @@
         <img :src="movie.poster_path" alt="movie_image" class="w-32 h-48 object-cover rounded-md shadow-md mr-4">
   
         <div>
-          <h2 class="text-2xl font-bold mb-2">{{ movie.title }}</h2>
-          <h4 class="text-lg mb-2">Release Date: {{ movie.release_date }}</h4>
-          <h4 class="text-lg mb-2">Genre: {{ movie.genres }}</h4>
-          <h4 class="text-lg mb-2">
+          <h2 class="text-2xl font-bold mb-2 text-white">{{ movie.title }}</h2>
+          <h4 class="text-lg mb-2 text-white">Release Date: {{ movie.release_date }}</h4>
+          <h4 class="text-lg mb-2 text-white">Genre: {{ movie.genres }}</h4>
+          <h4 class="text-lg mb-2 text-white">
             Vote Average: {{ movie.vote_average }}
             <span v-if="movie.vote_average > 5" class="text-green-500">🔺</span>
             <span v-else class="text-red-500">🔻</span>
           </h4>
-          <p class="mb-4">Movie Overview: {{ movie.overview }}</p>
-          <button class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300 active:bg-blue-800">
-            <a :href="youtubeTrailerUrl" target="_blank">Watch Trailer</a>
-          </button>
+          <p class="mb-4 text-white">Movie Overview: {{ movie.overview }}</p>
         </div>
       </div>
     </div>
+  </div>
+   
   </template>
 
 <script setup>
@@ -54,9 +54,6 @@ const fetchMovieDetails = async () => {
     console.log(error);
   }
 };
-
-const youtubeTrailerUrl = movie.value.youtube_trailer
-console.log('trailer',youtubeTrailerUrl)
 
 onMounted(() => {
   fetchMovieDetails();

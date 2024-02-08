@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="h-screen bg-zinc-900">
     <FormComponent
       v-for="(data, index) in RegisterFormData"
       :key="index"
@@ -8,8 +8,8 @@
       :button="data.button"
       @form-submit="RegisterData"
     />
-    <p class="text-center mt-5">Already registered: 
-     <span style="color: blue;">
+    <p class="text-center mt-5 text-white">Already registered: 
+     <span style="color: rgb(27, 179, 230);">
       <nuxt-link to="/login-form">login here</nuxt-link>
      </span> 
   </p>

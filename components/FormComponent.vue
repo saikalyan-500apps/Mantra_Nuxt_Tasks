@@ -1,12 +1,12 @@
 <!-- components/FormComponent -->
 <template>
-  <div class="flex items-center justify-center mt-10">
-    <div class="bg-white border border-blue-500 rounded-md p-8 shadow-md w-96">
-      <p class="text-center text-3xl mb-6">{{ Heading }}</p>
+  <div class="flex items-center justify-center">
+    <div class="bg-zinc-800 border border-blue-500 rounded-md p-8 shadow-md w-96 mt-10">
+      <p class="text-center text-3xl mb-6 text-white">{{ Heading }}</p>
 
       <!-- Form fields -->
       <div v-for="(field, fieldIndex) in fields" :key="fieldIndex" class="mb-4">
-        <label :for="field.label" class="block text-sm text-gray-600">{{ field.label }} - {{ code }}</label>
+        <label :for="field.label" class="block text-sm text-gray-100">{{ field.label }} - {{ code }}</label>
         <!-- Render select field if the inputfield type is 'select' -->
         <select v-if="field.inputfield === 'select'"
                 :id="field.label"
@@ -19,12 +19,12 @@
                :type="field.inputfield"
                :id="field.label"
                v-model="field.value"
-               class="h-12 w-full border border-blue-500 rounded-md px-3 py-2 transition focus:outline-none focus:border-blue-700"/>
+               class="bg-zinc-800 h-12 w-full border border-blue-500 rounded-md px-3 py-2 transition focus:outline-none focus:border-blue-700"/>
       </div>
 
       <button @click="handleSubmit"
-              class="bg-blue-500 hover:bg-blue-600 text-white h-12 w-full rounded-md transition duration-300 ease-in-out">
-        {{ button }}
+              class="bg-blue-700 hover:bg-blue-600 text-white h-12 w-full rounded-md transition duration-300 ease-in-out">
+        {{ button }} 
       </button>
 
       <p class="text-white">{{ msg }}</p>
@@ -52,5 +52,6 @@ const handleSubmit = () => {
     emits("form-submit", formData)
 }
 console.log(formData.value)
+
 
 </script>
